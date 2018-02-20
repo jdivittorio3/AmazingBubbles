@@ -1,8 +1,6 @@
 # AmazingBubbles
 Bubble pickers, inspired by Apple
 
-![](https://github.com/GlebRadchenko/AmazingBubbles/blob/master/Resources/example.gif)
-
 ## Requirements: 
   - iOS 9.1+
   - XCode 8.0+ 

@@ -29,8 +29,8 @@ open class ContentBubblesView: UIView {
     
     open lazy var gravityBehavior: UIFieldBehavior = {
         let radialGravity: UIFieldBehavior = UIFieldBehavior.radialGravityField(position: self.center)
-        radialGravity.region = UIRegion(radius: self.bounds.height * 5)
-        radialGravity.minimumRadius = self.bounds.height * 5
+        radialGravity.region = UIRegion(radius: self.bounds.height / 2)
+        radialGravity.minimumRadius = self.bounds.height / 2
         radialGravity.strength = BubbleConstants.initialGravityStrength
         radialGravity.animationSpeed = 1
         radialGravity.falloff = 0.1
@@ -45,10 +45,10 @@ open class ContentBubblesView: UIView {
     
     open lazy var pushGravityBehavior: UIFieldBehavior = {
         let radialGravity: UIFieldBehavior = UIFieldBehavior.radialGravityField(position: self.center)
-        radialGravity.region = UIRegion(radius: self.bounds.height * 5)
-        radialGravity.minimumRadius = self.bounds.height * 5
+        radialGravity.region = UIRegion(radius: self.bounds.height / 2)
+        radialGravity.minimumRadius = self.bounds.height / 2
         radialGravity.strength = -BubbleConstants.pushGravityStrength
-        radialGravity.animationSpeed = 4
+        radialGravity.animationSpeed = 3
         radialGravity.falloff = 0.1
         return radialGravity
     }()
@@ -308,7 +308,7 @@ public extension ContentBubblesView {
         bubbleViews.forEach{ $0.tapGestureRecognizer?.isEnabled = tapEnabled }
     }
     
-    public func handlePan(_ pan: UIPanGestureRecognizer) {
+    @objc public func handlePan(_ pan: UIPanGestureRecognizer) {
         switch pan.state {
         case .began:
             gravityBehavior.position = pan.location(in: self)
@@ -323,7 +323,7 @@ public extension ContentBubblesView {
         }
     }
     
-    public func handleTap(_ tap: UITapGestureRecognizer) {
+    @objc public func handleTap(_ tap: UITapGestureRecognizer) {
         guard let bubbleView = tap.view as? BubbleView else {
             return
         }
